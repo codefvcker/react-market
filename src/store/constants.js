@@ -1,0 +1,2 @@
+export const ADD_CURRENT_USER = "USER/ADD_CURRENT_USER";
+export const ON_USER_OUT = "USER/ON_USER_OUT";
