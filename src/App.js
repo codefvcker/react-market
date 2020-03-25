@@ -11,7 +11,7 @@ function App() {
       <RouteWrap>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/profile/:id" component={Profile} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/about" component={About} />

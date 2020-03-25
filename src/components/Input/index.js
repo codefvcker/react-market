@@ -20,12 +20,10 @@ export const Input = ({ className, label, labelCls, id, type, ...props }) => {
 
 Input.defaultProps = {
   className: "",
-  // id: "",
   type: ""
 };
 
 Input.propTypes = {
   className: PropTypes.string,
-  // id: PropTypes.string,
   type: PropTypes.string
 };

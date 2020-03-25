@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Navigation.scss";
 
-export const Navigation = ({ user, handleSignOut }) => {
+export const Navigation = ({ handleSignOut, user }) => {
   return (
     <div className="navigation">
       <div className="navigation__logo-wrap">
@@ -17,7 +17,7 @@ export const Navigation = ({ user, handleSignOut }) => {
 
         {user ? (
           <span className="navigation__auth">
-            <NavLink to="/profile">
+            <NavLink to={`/profile/${user.uid}`}>
               <span>Profile</span>
             </NavLink>
             <NavLink onClick={handleSignOut} to="/">

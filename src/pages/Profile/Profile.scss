@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &__menu-wrap {
+        height: 80%;
+        width: 20%;
+    }
+    &__info-wrap {
+        height: 80%;
+        width: 75%;
+    }
+}

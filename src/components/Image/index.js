@@ -3,8 +3,8 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import "./Image.scss";
 
-export const Image = ({ src, alt, className, ...props }) => {
-  const classes = classNames("image", className);
+export const Image = ({ src, alt, className, circle, ...props }) => {
+  const classes = classNames("image", { circle }, className);
   return <img {...props} className={classes} src={src} alt={alt} />;
 };
 
