@@ -10,7 +10,7 @@ export const SignIn = ({ history }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fire.auth().signInWithEmailAndPassword(email, password);
+    fire.auth.signInWithEmailAndPassword(email, password);
     setEmail("");
     setPassword("");
     history.push("/");

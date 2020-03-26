@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Label, Input } from "../../components";
 import "./SignUp.scss";
-import { useDispatch } from "react-redux";
 import fire from "../../config/firebase";
 
 export const SignUp = ({ history }) => {
@@ -14,11 +13,8 @@ export const SignUp = ({ history }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (policy && password === confirmPassword) {
-      await fire.auth().createUserWithEmailAndPassword(email, password);
-      await fire.auth().currentUser.updateProfile({
-        displayName: name,
-        confirmPassword
-      });
+      await fire.userRegistration(name, email, password);
+      // await fire.addInfo("name", name);
     } else {
       alert("Something went wrong");
     }
@@ -48,7 +44,7 @@ export const SignUp = ({ history }) => {
             type="text"
             placeholder="user name"
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={e => setName(e.target.value.trim())}
           />
         </div>
         <div className="signup-form__input-wrap">

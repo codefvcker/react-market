@@ -10,10 +10,7 @@ export const Header = ({ history }) => {
   const user = useSelector(state => state.user.user);
 
   const handleSignOut = async () => {
-    await fire
-      .auth()
-      .signOut()
-      .then(dispatch(onUserOut()));
+    await fire.auth.signOut().then(dispatch(onUserOut()));
   };
 
   return (

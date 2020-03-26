@@ -9,22 +9,27 @@ export const Main = () => {
   const users = useSelector(state => state.user.user);
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged(user => {
+    fire.auth.onAuthStateChanged(user => {
       if (user) {
         dispatch(addCurrentUser(user));
       } else {
-        alert("Вы не залогены, залогиньтесь");
+        // alert("Вы не залогены, залогиньтесь");
       }
     });
   }, []);
+
+  const owc = async () => {
+    await fire.addData("fvckDATA", "DATA");
+  };
 
   return (
     <div>
       {/* <AdvertCard /> */}
       <button onClick={() => console.log(users)}>check</button>
-      <button onClick={() => console.log(fire.auth().currentUser)}>
+      <button onClick={() => console.log(fire.auth.currentUser)}>
         check current
       </button>
+      <button onClick={owc}>check</button>
     </div>
   );
 };
