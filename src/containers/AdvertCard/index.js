@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image, Icon, Label } from "../../components";
+import { Image, Icon, Label, Button } from "../../components";
 import "./AdvertCard.scss";
 
 export const AdvertCard = ({
@@ -9,9 +9,8 @@ export const AdvertCard = ({
   alt,
   className,
   author,
-  course,
-  rating,
-  views
+  label,
+  price
 }) => {
   const cls = ["advert-card"];
 
@@ -20,22 +19,21 @@ export const AdvertCard = ({
   }
 
   return (
-    <Link to={to} className={cls.join(" ")}>
+    <Link to={`/advert/${to}`} className={cls.join(" ")}>
       <div className="advert-card__image-wrap">
         <Image className="advert-card__image" src={src} alt={alt} />
       </div>
       <div className="advert-card__content">
         <Label type="light">{author}</Label>
-        <Label type="semi">{course}</Label>
+        <Label type="semi">{label}</Label>
       </div>
       <div className="advert-card__stats-wrap">
         <div className="advert-card__shows">
           <Icon name="users" />
-          <Label type="semi">{views}k</Label>
+          <Label type="semi">{price}$</Label>
         </div>
         <div className="advert-card__stars">
-          <Icon name="star" />
-          <Label type="semi">{rating}</Label>
+          <Button>Add to cart</Button>
         </div>
       </div>
     </Link>

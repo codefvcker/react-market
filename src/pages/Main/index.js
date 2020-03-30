@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import fire from "../../config/firebase";
-import { AdvertCard } from "../../containers";
+import { AdvertBoard } from "../../containers";
 import { useDispatch, useSelector } from "react-redux";
 import { addCurrentUser } from "../../store/actions/actionCreators";
 
@@ -18,18 +18,13 @@ export const Main = () => {
     });
   }, []);
 
-  const owc = async () => {
-    await fire.addData("fvckDATA", "DATA");
-  };
-
   return (
     <div>
-      {/* <AdvertCard /> */}
+      <AdvertBoard />
       <button onClick={() => console.log(users)}>check</button>
       <button onClick={() => console.log(fire.auth.currentUser)}>
         check current
       </button>
-      <button onClick={owc}>check</button>
     </div>
   );
 };

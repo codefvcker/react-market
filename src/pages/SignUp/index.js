@@ -7,14 +7,14 @@ export const SignUp = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [number, setNumber] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [policy, setPolicy] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
     if (policy && password === confirmPassword) {
-      await fire.userRegistration(name, email, password);
-      // await fire.addInfo("name", name);
+      await fire.userRegistration(name, email, number, password);
     } else {
       alert("Something went wrong");
     }
@@ -55,6 +55,16 @@ export const SignUp = ({ history }) => {
             placeholder="e-mail"
             value={email}
             onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="signup-form__input-wrap">
+          <Input
+            name="phone"
+            className="signup-form__input"
+            type="number"
+            placeholder="number"
+            value={number}
+            onChange={e => setNumber(e.target.value)}
           />
         </div>
         <div className="signup-form__input-wrap">

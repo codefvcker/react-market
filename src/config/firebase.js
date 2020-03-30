@@ -21,26 +21,44 @@ class Firebase {
     this.db = firebase.firestore();
   }
 
-  userRegistration = async (name, email, password) => {
+  userRegistration = async (name, email, number, password) => {
     await this.auth.createUserWithEmailAndPassword(email, password);
-    await this.db.doc(`asdas/${this.auth.currentUser.uid}`).set({
-      name
+    await this.db.doc(`users/${this.auth.currentUser.uid}`).set({
+      name,
+      email,
+      number
     });
-    return this.auth.currentUser.updateProfile({
+    await this.auth.currentUser.updateProfile({
       displayName: name
     });
   };
 
-  // addInfo = (name, info) => {
-  //   return this.db.doc(`asdas/${this.auth.currentUser.uid}`).set({
-  //     [name]: info
-  //   });
-  // };
-
-  addData = (name, info) => {
-    return this.db.doc(`asdas/${this.auth.currentUser.uid}`).update({
-      [name]: info
+  addAdvert = async (title, description, category, number, price) => {
+    const payload = {
+      title,
+      description,
+      category,
+      number,
+      price,
+      uid: this.auth.currentUser.uid
+    };
+    await this.db.doc(`/adverts/${Date.now()}`).set(payload);
+    await this.db.doc(`/users/${this.auth.currentUser.uid}`).update({
+      adverts: firebase.firestore.FieldValue.arrayUnion(payload)
     });
+  };
+
+  getAdverts = async () => {
+    const response = await this.db.collection("/adverts").get();
+
+    console.log(response);
+
+    // console.log(response.forEach(data => ({ id: data.id, data: data.data() })));
+    // response.foeEach(data => console.log({ id: data.id, data: data.data() }));
+
+    // console.log(doc =>
+    //   doc.forEach(data => ({ id: data.id, data: data.data() }))
+    // );
   };
 }
 
