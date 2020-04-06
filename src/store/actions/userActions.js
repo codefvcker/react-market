@@ -6,10 +6,10 @@ export const addCurrentUser = ({ displayName, photoUrl, email, uid }) => ({
     displayName,
     photoUrl,
     email,
-    uid
-  }
+    uid,
+  },
 });
 
 export const onUserOut = () => ({
-  type: ON_USER_OUT
+  type: ON_USER_OUT,
 });

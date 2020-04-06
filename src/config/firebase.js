@@ -7,7 +7,7 @@ const config = {
   projectId: "react-market-775c5",
   storageBucket: "react-market-775c5.appspot.com",
   messagingSenderId: "777037652519",
-  appId: "1:777037652519:web:617b935aaef552eedee402"
+  appId: "1:777037652519:web:617b935aaef552eedee402",
 };
 
 class Firebase {
@@ -26,39 +26,44 @@ class Firebase {
     await this.db.doc(`users/${this.auth.currentUser.uid}`).set({
       name,
       email,
-      number
+      number,
     });
     await this.auth.currentUser.updateProfile({
-      displayName: name
+      displayName: name,
     });
   };
 
-  addAdvert = async (title, description, category, number, price) => {
+  addAdvert = async (title, description, category, number, price, author) => {
     const payload = {
       title,
       description,
       category,
       number,
       price,
-      uid: this.auth.currentUser.uid
+      uid: this.auth.currentUser.uid,
+      author: this.auth.currentUser.displayName,
     };
+
     await this.db.doc(`/adverts/${Date.now()}`).set(payload);
     await this.db.doc(`/users/${this.auth.currentUser.uid}`).update({
-      adverts: firebase.firestore.FieldValue.arrayUnion(payload)
+      adverts: firebase.firestore.FieldValue.arrayUnion(payload),
     });
   };
 
-  getAdverts = async () => {
+  getAllAdverts = async () => {
+    let result = [];
     const response = await this.db.collection("/adverts").get();
 
-    console.log(response);
+    response.forEach((data) =>
+      result.push({
+        id: data.id,
+        data: data.data(),
+      })
+    );
 
-    // console.log(response.forEach(data => ({ id: data.id, data: data.data() })));
-    // response.foeEach(data => console.log({ id: data.id, data: data.data() }));
+    return result;
 
-    // console.log(doc =>
-    //   doc.forEach(data => ({ id: data.id, data: data.data() }))
-    // );
+    // console.log(result);
   };
 }
 

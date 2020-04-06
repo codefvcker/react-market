@@ -9,7 +9,7 @@ export const AdvertCreator = ({ history }) => {
   const [number, setNumber] = useState("");
   const [price, setPrice] = useState("");
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await fire.addAdvert(title, description, category, number, price);
     setTitle("");
@@ -21,7 +21,7 @@ export const AdvertCreator = ({ history }) => {
   };
 
   return (
-    <form className="advert-creator" onSubmit={e => handleSubmit(e)}>
+    <form className="advert-creator" onSubmit={(e) => handleSubmit(e)}>
       <div className="advert-creator__top-wrap">
         <div className="advert-creator__logo-wrap">
           <Label type="bold">Logo</Label>
@@ -38,7 +38,7 @@ export const AdvertCreator = ({ history }) => {
             type="text"
             placeholder="title"
             value={title}
-            onChange={e => setTitle(e.target.value.trim())}
+            onChange={(e) => setTitle(e.target.value.trim())}
           />
         </div>
         <div className="advert-creator__input-wrap">
@@ -48,7 +48,7 @@ export const AdvertCreator = ({ history }) => {
             type="text"
             placeholder="category"
             value={category}
-            onChange={e => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
           />
         </div>
         <div className="advert-creator__input-wrap">
@@ -58,7 +58,7 @@ export const AdvertCreator = ({ history }) => {
             type="number"
             placeholder="number"
             value={number}
-            onChange={e => setNumber(e.target.value)}
+            onChange={(e) => setNumber(e.target.value)}
           />
         </div>
         <div className="advert-creator__input-wrap">
@@ -68,7 +68,7 @@ export const AdvertCreator = ({ history }) => {
             type="number"
             placeholder="price"
             value={price}
-            onChange={e => setPrice(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <div className="advert-creator__input-wrap">
@@ -78,7 +78,7 @@ export const AdvertCreator = ({ history }) => {
             type="text-area"
             placeholder="description"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
       </div>

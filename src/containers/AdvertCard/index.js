@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Icon, Label, Button } from "../../components";
 import "./AdvertCard.scss";
+import { useDispatch } from "react-redux";
+import { setCurrentAdvertId } from "../../store/actions/appActions";
 
 export const AdvertCard = ({
   to,
@@ -10,8 +12,9 @@ export const AdvertCard = ({
   className,
   author,
   label,
-  price
+  price,
 }) => {
+  const dispatch = useDispatch();
   const cls = ["advert-card"];
 
   if (className) {
@@ -19,7 +22,11 @@ export const AdvertCard = ({
   }
 
   return (
-    <Link to={`/advert/${to}`} className={cls.join(" ")}>
+    <Link
+      onClick={() => dispatch(setCurrentAdvertId(to))}
+      to={`/advert/${to}`}
+      className={cls.join(" ")}
+    >
       <div className="advert-card__image-wrap">
         <Image className="advert-card__image" src={src} alt={alt} />
       </div>

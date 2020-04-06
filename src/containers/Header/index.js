@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "./Navigation";
 import fire from "../../config/firebase";
 import "./Header.scss";
-import { onUserOut } from "../../store/actions/actionCreators";
+import { onUserOut } from "../../store/actions/userActions";
 
 export const Header = ({ history }) => {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user);
+  const user = useSelector((state) => state.user.user);
 
   const handleSignOut = async () => {
     await fire.auth.signOut().then(dispatch(onUserOut()));
